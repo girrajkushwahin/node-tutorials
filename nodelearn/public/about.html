@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./style.css"> -->
+    <title>Document</title>
+    <style>
+        h2{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h2>about page of http server</h2>
+    <h2 id="h2id">this is h2</h2>
+    <button onclick="myfun()">button</button>
+</body>
+<script>
+    function myfun() {
+        const h2id = document.getElementById('h2id');
+        h2id.innerHTML = 'hi i m girraj';
+    }
+</script>
+</html>

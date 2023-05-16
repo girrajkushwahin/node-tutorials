@@ -1,0 +1,39 @@
+module wrapper function in nodejs
+
+In NodeJS, require() is a built-in function to include external modules that exist in separate files. 
+require() statement basically reads a JavaScript file, executes it, and then proceeds to return the export object..
+
+
+module.exports and require coming from where?
+
+() grouping operator
+
+
+(function(){
+
+}) anonymous function
+this is called module wrapper function.
+when we run code then nodejs add our code to module wrapper function.
+and due to module wrapper function, our variables and functions will become private.
+
+parameters of module wrapper function i.e, exports, require, module, __filename, __dirname have local scope for 
+every individual file or module or code.
+
+
+
+(function(){
+
+})(); parenthesis at last of module wrapper function or IIFE is because of automatic running of that function.
+use () operator to call this anonymous function immediately after completion of its definition
+
+in js, our function not dependent on other. and called automatically after page refresh and all the data inside it is private
+and works only inside it. it is called iife..
+
+we dont need to define module wrapper function and dont need to code inside it. it will be done by node. if we do so, then
+we can get errors while using .
+
+
+and __dirname and __filename is needed to know about file and dir name and we can use it normally in our file without module
+wrapper fun
+
+index.js -> console.log(__dirname) and console.log(__filename)

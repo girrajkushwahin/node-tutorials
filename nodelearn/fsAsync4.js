@@ -1,9 +1,9 @@
-// in asyn methods of fs, we pass function as argument. i.e, a callback method, callback method means which is called at the last after the original function completes its task.
+// in async methods of fs, we pass function as argument. i.e, a callback method, callback method means which is called at the last after the original function completes its task.
 // the callback function has arguments which tells us that whether the operation completed successfully or not.
 // then, we need to say, what to do after original method completes its task. in the callback method body. even it's nothing and start checking for errors.
 
 
-const fs=require('fs');
+const fs = require('fs');
 
 // fs.writeFile('myfile.txt','i m dhananjay',(err)=>{
 //     if(err) console.log(err);

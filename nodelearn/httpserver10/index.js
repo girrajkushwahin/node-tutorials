@@ -38,18 +38,18 @@
 
 
 // userapi12 part -
-const http=require('http');
-const fs=require('fs');
+const http = require('http');
+const fs = require('fs');
 
-const data=fs.readFileSync(`${__dirname}/../userapi12/userapi.json`,'UTF-8')
-const objData=JSON.parse(data);
+const data = fs.readFileSync(`${__dirname}/../userapi12/userapi.json`, 'UTF-8')
+const objData = JSON.parse(data);
 
-const server=http.createServer((req,res)=>{
+const server = http.createServer((req, res) => {
     // console.log(req.url);
-    if(req.url==='/') res.end('Hello from home side');
-    else if(req.url==='/about') res.end('Hello from about side');
-    else if(req.url==='/contact') res.end('Hello from contact side');
-    else if(req.url==='/usersapi'){
+    if (req.url === '/') res.end('Hello from home side');
+    else if (req.url === '/about') res.end('Hello from about side');
+    else if (req.url === '/contact') res.end('Hello from contact side');
+    else if (req.url === '/usersapi') {
         // fs.readFile(`${__dirname}/../userapi12/userapi.json`,'UTF-8',(err,data)=>{
         //     if(err) console.log(err);
         //     else{
@@ -61,15 +61,16 @@ const server=http.createServer((req,res)=>{
         //         res.end();
         //     }
         // })
-        res.writeHead(200,{"content-type":"application/json"});
+        res.writeHead(200, { "content-type": "application/json" });
+        // res.setHeader() and res.statusCode() both done in single call using res.writeHead()
         res.write(objData[0].name);
         res.end();
     }
-    else{
-        res.writeHead(404,{"Content-type":"text/html"});
+    else {
+        res.writeHead(404, { "Content-type": "text/html" });
         res.end('<h1>404 not found</h1>');
     }
 })
-server.listen(8000,'127.0.0.1',()=>{
+server.listen(8000, '127.0.0.1', () => {
     console.log('listennig to port 8000')
 })

@@ -62,7 +62,7 @@ const server = http.createServer((req, res) => {
         //     }
         // })
         res.writeHead(200, { "content-type": "application/json" });
-        // res.setHeader() and res.statusCode() both done in single call using res.writeHead()
+        // res.setHeader() and res.statusCode=200 property both done in single call using res.writeHead()
         res.write(objData[0].name);
         res.end();
     }
@@ -71,6 +71,7 @@ const server = http.createServer((req, res) => {
         res.end('<h1>404 not found</h1>');
     }
 })
+
 server.listen(8000, '127.0.0.1', () => {
     console.log('listennig to port 8000')
 })

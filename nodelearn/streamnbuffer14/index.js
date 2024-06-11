@@ -43,14 +43,14 @@
 
 
 
-const fs=require('fs');
-const http=require('http');
+const fs = require('fs');
+const http = require('http');
 
-const server=http.createServer();
+const server = http.createServer();
 
-server.on('request',(req,res)=>{
-    const rstream=fs.createReadStream('input.txt');
-    rstream.pipe(res);
+server.on('request', (req, res) => {
+    const rstream = fs.createReadStream('input.txt');
+    rstream.pipe(res); // 'response' object is instance of writable stream ?
 })
 // most efficient way and fast then previous two
-server.listen(8000,'127.0.0.1');
+server.listen(8000, '127.0.0.1');

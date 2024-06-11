@@ -1,4 +1,4 @@
-const path=require('path');
+const path = require('path');
 
 // console.log(path.dirname('D:/mernIITS/nodelearn/6. pathmodule.js'));
 // console.log(path.extname('D:/mernIITS/nodelearn/6. pathmodule.js'));

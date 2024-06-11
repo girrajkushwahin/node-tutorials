@@ -20,7 +20,7 @@
 // (function(){
 //     var name='seema';
 // })();
-// console.log(name); // cannot accessed outside due to module wrapper function, even var has global scope and it is same file but cannot access data inside module wrapper function.
+// console.log(name); // cannot accessed outside due to module wrapper function
 
 // console.log(`${__filename}`);
 // console.log(`${__dirname}`);

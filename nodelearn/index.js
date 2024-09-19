@@ -49,19 +49,19 @@ server.on('request', async (req, res) => {
     else if (path === '/about') {
 
         // callback function for async task -
-        fs.readFile('./public/about.html', 'utf-8', (err, data) => {
-            if (err) {
-                console.error('Error reading file:', err); // Log the error for debugging
-                res.writeHead(500, { 'Content-Type': 'text/plain' });
-                res.end('Internal server error');
-                return; // Stop further execution
-            }
-            else {
-                res.writeHead(200, { "Content-Type": "text/html" })
-                // res.write(data);
-                res.end(data);
-            }
-        })
+        // fs.readFile('./public/about.html', 'utf-8', (err, data) => {
+        //     if (err) {
+        //         console.error('Error reading file:', err); // Log the error for debugging
+        //         res.writeHead(500, { 'Content-Type': 'text/plain' });
+        //         res.end('Internal server error');
+        //         return; // Stop further execution
+        //     }
+        //     else {
+        //         res.writeHead(200, { "Content-Type": "text/html" })
+        //         // res.write(data);
+        //         res.end(data);
+        //     }
+        // })
 
 
         // Promise way for async task -

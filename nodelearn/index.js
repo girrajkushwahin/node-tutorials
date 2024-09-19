@@ -49,14 +49,19 @@ server.on('request', async (req, res) => {
     else if (path === '/about') {
 
         // callback function for async task -
-        // fs.readFile('./public/about.html', 'utf-8', (err, data) => {
-        //     if (err) throw err;
-        //     else {
-        //         res.writeHead(200, { "Content-Type": "text/html" })
-        //         // res.write(data);
-        //         res.end(data);
-        //     }
-        // })
+        fs.readFile('./public/about.html', 'utf-8', (err, data) => {
+            if (err) {
+                console.error('Error reading file:', err); // Log the error for debugging
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.end('Internal server error');
+                return; // Stop further execution
+            }
+            else {
+                res.writeHead(200, { "Content-Type": "text/html" })
+                // res.write(data);
+                res.end(data);
+            }
+        })
 
 
         // Promise way for async task -
@@ -66,9 +71,9 @@ server.on('request', async (req, res) => {
         //         res.end(data);
         //     })
         //     .catch((err) => {
+        //         console.error('Error reading file:', err);
         //         res.writeHead(500, { "Content-Type": "text/plain" })
         //         res.end('Internal server error');
-        //         throw err;
         //     })
 
 
@@ -78,9 +83,9 @@ server.on('request', async (req, res) => {
             res.writeHead(200, { "Content-Type": "text/html" });
             res.end(data);
         } catch (err) {
+            console.error(err);
             res.writeHead(500, { "Content-Type": "text/plain" })
             res.end('Internal server error');
-            throw err;
         }
 
     }
@@ -90,7 +95,12 @@ server.on('request', async (req, res) => {
     }
     else if (path === '/style.css') {
         fs.readFile('./public/style.css', 'utf-8', (err, data) => {
-            if (err) throw err;
+            if (err) {
+                console.error('Error reading file:', err); // Log the error for debugging
+                res.writeHead(500, { 'Content-Type': 'text/plain' });
+                res.end('Internal server error');
+                return; // Stop further execution
+            }
             else {
                 res.writeHead(200, { 'Content-Type': 'text/css' })
                 res.end(data);

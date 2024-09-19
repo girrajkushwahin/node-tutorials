@@ -13,23 +13,23 @@
 
 
 
-// const http=require('http');
+// const http = require('http');
 
-// const server=http.createServer((req,res)=>{
+// const server = http.createServer((req, res) => {
 //     // console.log(req.url);
-//     if(req.url==='/') res.end('Hello from home side');
-//     else if(req.url==='/about') res.end('Hello from about side');
-//     else if(req.url==='/contact') res.end('Hello from contact side');
-//     else if(req.url==='/usersapi'){
+//     if (req.url === '/') res.end('Hello from home side');
+//     else if (req.url === '/about') res.end('Hello from about side');
+//     else if (req.url === '/contact') res.end('Hello from contact side');
+//     else if (req.url === '/usersapi') {
 //         res.write('Hello from userapi side');
 //         res.end();
 //     }
-//     else{
-//         res.writeHead(404,{"Content-type":"text/html"});
+//     else {
+//         res.writeHead(404, { "Content-type": "text/html" });
 //         res.end('<h1>404 not found</h1>');
 //     }
 // })
-// server.listen(8000,'127.0.0.1',()=>{
+// server.listen(8000, '127.0.0.1', () => {
 //     console.log('listennig to port 8000')
 // })
 // for routing http request

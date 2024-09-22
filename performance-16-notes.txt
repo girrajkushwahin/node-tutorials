@@ -1,0 +1,62 @@
+=> Multi threading/parallelism/performance optimization/scaling application -
+
+A worker is essentially a separate unit of execution that can handle tasks independently from the main thread or process.
+
+1. worker processes - child_process, cluster(makes multiple instances of app,it uses child_process module internally)
+2. worker threads - worker_threads
+
+Multiple processes and threads in Node.js cannot directly share the same memory by default. This is due to the nature of processes and threads in general: each process has its own independent memory space, and the operating system enforces memory isolation to ensure that processes do not interfere with each other's memory.
+However, there are exceptions and workarounds that allow shared memory between processes and threads - via "SharedArrayBuffer". This feature can be beneficial for scenarios where real-time data sharing or synchronization is crucial. However, it's essential to use "SharedArrayBuffer" carefully, considering security implications and potential risks associated with shared memory access.
+
+1. worker processes (cluster module) - We use cluster module in Node.js to create multiple instances (processes) of the application, the master/primary process is responsible for distributing the incoming workload among the multiple child processes. This allows for better utilization of system resources and improved performance by leveraging the capabilities of multiple CPU cores.
+
+The primary process/master process manages the creation and distribution of tasks to the child processes, helping to balance the workload and handle incoming requests efficiently. Each child process can handle a portion of the workload, enabling parallel processing and improved scalability for the application.
+
+Creating clusters in Node.js typically involves creating child processes, where each cluster contains a separate instance of your application. It is generally recommended to create clusters equal to the number of CPU cores available because each cluster will correspond to a process running on a specific core.
+
+In a clustered environment, worker processes do not directly communicate with each other because they are separate instances with their own memory space. Instead, they can communicate through the Primary process (the master process in older versions), using inter-process communication (IPC) channels.
+IPC through the Primary process: Node.js provides a built-in way for worker processes to communicate with the Primary process using process.send() and the 'message' event. The Primary process can act as a mediator and forward messages between workers.
+
+The cluster module in Node.js uses the "child_process" module internally to create worker processes.
+
+2. worker processes (child_process module) - The child_process module in Node.js allows you to create child processes, enabling your Node.js application to run shell commands or external scripts, spawn new Node.js processes, and communicate with them. It is useful for running system commands or executing other programs from within a Node.js environment.
+
+When you use the child_process module in Node.js, the parent process creates independent child processes. These child processes are separate entities from the parent process, each running in its own memory space. This separation ensures that changes made in one process do not affect the others.
+
+i. Creating Child Processes: (exec(), spawn(), fork(), execFile())
+
+You use the child_process module's functions to create child processes. The most common functions include:
+
+child_process.spawn(command, args, options): Spawns a new process and returns a ChildProcess instance.
+
+child_process.fork(modulePath, args, options): Spawns a new Node.js process and returns a ChildProcess instance.
+
+child_process.exec(command, [options], callback): Executes a command in a shell and provides the output and error through a callback.
+
+ii. Communication:
+
+Child processes can communicate with the parent process and other child processes using various methods:
+
+Standard streams: The child process inherits the standard input, output, and error streams from the parent process. You can use these streams to send data to and receive data from the child process.
+
+Message passing: The child_process.fork() function provides a more efficient way to communicate between processes using message passing. The child process can send messages to the parent process using the process.send() method, and the parent process can receive messages using the message event.
+
+Shared memory: In some cases, you can use shared memory to allow processes to access the same data without copying it. However, this requires careful synchronization to avoid race conditions.
+
+iii. Process Management:
+
+The parent process can monitor the status of child processes and manage their lifecycle:
+
+Event listeners: You can attach event listeners to the ChildProcess instance to handle events such as exit, error, and message.
+
+Killing child processes: The parent process can terminate child processes using the process.kill() method.
+
+Process groups: You can create process groups to manage multiple related child processes together.
+
+3. worker threads (worker_threads module) - (Worker, isMainThread, parentPort, workerData, threadId) -
+
+When you create a worker thread in Node.js using the worker_threads module, it runs in a separate thread within the same process. However, each worker thread has its own V8 instance, memory, and event loop. This means that worker threads can execute code in parallel without blocking the main thread, but they do not create a separate process like the child_process module does.
+
+The worker_threads module in Node.js allows you to create and manage multiple threads for concurrent execution. This is particularly useful for CPU-intensive tasks, as it can help offload work from the main event loop, improving performance and responsiveness.
+
+While the general rule is to create worker threads equal to the number of CPU cores (since each worker can fully utilize one core), you can increase the number of worker threads beyond the number of cores if the system resources are not fully utilized.

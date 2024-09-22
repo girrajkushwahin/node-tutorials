@@ -110,3 +110,5 @@ function longComputationPromise() {
 */
 
 // check docs for more information about this topic/concept.
+// Terminate the worker processes(child processes) after completing the task
+// If you want to use worker processes for other tasks and don't want to terminate then use the concept of 'child process pool'

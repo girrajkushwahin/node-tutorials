@@ -1,7 +1,7 @@
 module wrapper function in nodejs
 
 In NodeJS, require() is a built-in function to include external modules that exist in separate files. 
-require() statement basically reads a JavaScript file, executes it, and then proceeds to return the export object..
+require() statement basically reads a JS file, executes it, and then proceeds to return the export object..
 
 
 module.exports and require coming from where?

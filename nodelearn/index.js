@@ -42,7 +42,7 @@ server.on('request', async (req, res) => {
     // query is an object where we have all queries of an url in key-value pair
 
     if (path === '/') {
-        res.writeHead(200, { "Content-Type": "text/html" })
+        res.writeHead(200, { "Content-Type": "text/html" });
         res.write(data);
         res.end();
     }
@@ -84,14 +84,14 @@ server.on('request', async (req, res) => {
             res.end(data);
         } catch (err) {
             console.error(err);
-            res.writeHead(500, { "Content-Type": "text/plain" })
+            res.writeHead(500, { "Content-Type": "text/plain" });
             res.end('Internal server error');
         }
 
     }
     else if (path === '/contact') {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end('this is contact page')
+        res.end('this is contact page');
     }
     else if (path === '/style.css') {
         fs.readFile('./public/style.css', 'utf-8', (err, data) => {
@@ -102,16 +102,16 @@ server.on('request', async (req, res) => {
                 return; // Stop further execution
             }
             else {
-                res.writeHead(200, { 'Content-Type': 'text/css' })
+                res.writeHead(200, { 'Content-Type': 'text/css' });
                 res.end(data);
             }
-        })
+        });
     }
-    else res.end('<h1>404 not found</h1>')
-})
+    else res.end('<h1>404 not found</h1>');
+});
 
 server.listen(8000, '127.0.0.1', () => {
-    console.log('listennig to port 8000')
-})
+    console.log('listennig to port 8000');
+});
 
 // more to code and regex concept comes here in node
